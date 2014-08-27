@@ -1,0 +1,47 @@
+body{
+  background-color: #292929;
+  font-family: sans-serif;
+}
+button{
+  display: inline-block;
+  width: 20%;
+  color: #F22E2E;
+  font-size: 30px;
+  background-color: #292929;
+  height: 50px;
+  border: none;
+  margin: 10px 0 10px 0;
+  
+}
+button:first-of-type{
+  margin-left: 30%;
+}
+
+input{
+  display: block;
+  text-align: center;
+  background-color: #DEDBD5;
+  border: none;
+  width: 80%;
+  color: #424342;
+  margin: 0 auto;
+  font-size: 20px;
+  height: 40px;
+}
+
+#output{
+  width: 80%;
+  height: 30px;
+  font-size: 25px;
+  background-color: #424342;
+  margin: 0 auto;
+  background-color: #DEDBD5;
+  color: #424342;
+  text-align: center;
+  overflow: scroll;
+}
+
+.highlight { 
+  background-color: yellow;
+  color: pink;
+}
