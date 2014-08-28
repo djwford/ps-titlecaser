@@ -1,9 +1,27 @@
 $(document).ready(function(){
-  $("#test").on('click', function(){
+
+
+  $("#test").on('click', calculateOutput);
+
+  $("#input_box").keyup(function(event){
+      if(event.keyCode == 13){
+          $("#test").click();
+      }
+  });
+
+
+
+  $('#clear').on('click', function(){
+    $('#output').html('');
+    $('#input_box').val('');
+  });
+});
+
+  function calculateOutput() {
     var inputString = $('#input_box').val();
     var outputString = psTitlecase(inputString);
     var outputStringArray = outputString.split(" ");
-    var modArray = []
+    var modArray = [];
     var inputStringArray = inputString.split(" ");
     for(i = 0; i < inputStringArray.length; i++){
       if(inputStringArray[i].search(outputStringArray[i]) == -1){
@@ -11,22 +29,18 @@ $(document).ready(function(){
       }
     }
     $('#output').html(outputString);
+    console.log(modArray);
     for(i = 0; i < modArray.length; i++){
-      $('#output').highlight(outputStringArray[modArray[i]], { wordsOnly: true, caseSensitive: true });
-    }    
-  });
-  $('#clear').on('click', function(){
-    $('#output').html('output');
-    $('#input_box').val('');
-  })
-});
+      $('#output').highlight(outputStringArray[modArray[i]], { caseSensitive: true });
+    }
+  }
 
 
 var termIterator = 0;
+var techDictionary = ["HTML5", ".NET", "AngularJS", "CSS", "Grunt.js", "Ajax", "Node.js", "iOS", "F#", "C#", "C++", "XPath", "SQL", "Java", "MVC", "Grunt", "App", "HTTP", "SAP", "Sass", "User", "XAML", "GitHub", "Seq", "Node", "iAD", "Ruby", "BizTalk", "ESB", "Bus", "VBA", "RxJava", "Solr", "Play", "phpMyAdmin", "Web", "ASP", "REST", "RESTful", "Durandal.js", "Scala", "Qt", "ExtJS", "MVVM ", "Unit", "XCTest", "Kodu", "scriptcs", "POV-Ray", "TestStack", "OWASP", "MongoDB", "SharePoint", "Apps", "Data", "D3.js", "JAX-WS", "CXF", "ABAP", "Play!", "API", "D", "DotNetNuke", "WCF", "MySQL", "LightSwitch", "WebRTC", "XSLT", "WPF", "Transact-SQL", "Art", "Svcs", "SignalR", "Win", "WP8", "CodedUI", "SpecFlow", "Tips", "AutoPlay", "NetBeans", "WordPress", "PyGame", "Unity3D", "T-SQL", "tSQLt", "WinJS", "JavaScript", "IndexedDB", "File", "Lua", "ServiceStack", "CakePHP", "SkyDrive", "AWS", "PowerShell", "ADO.NET", "NDepend", "OS", "Bash", "Backbone.JS", "xUnit.net", "CUDA", "Lite", "JustMock", "MVVM", "LINQ", "UML", "URL", "JIRA", "log4net", "ORM", "loC", "EF", "UI", "Mac", "OAuth2", "Oauth", "OpenID", "JSON", "JWT", "Pi", "MVC4", "FitNesse", "CLR", "NCrunch", "COM", "JUnit", "PhoneGap", "PC", "MATLAB", "BigQuery", "III", "II", "Get", "Direct2D", "ColdFusion", "N-Tier", "RSpec", "APIs", "Chef", "Objective-C", "XNA", "ExpressJS", "IntelliTrace", "ALM", "TFS", "XRM", "ActionBar", "FakeItEasy", "MonoGame", "MEF", "Moq", "FireBug", "NuGet", "JsRender", "TCP/IP", "TCP", "IP", "NoSQL", "NHibernate", "PostgreSQL", "LESS", "SASS", "RavenDB", "OData", "T4", "SVN", "StreamInsight", "Git", "XQuery", "Code", "WebMatrix", "Vim", "Prototype.js", "iPhone", "IronRuby", "VSTS", "MacRuby", "CouchDB", "VB6", "VB.NET", "WMI", "DbContext", "IIS", "CoffeeScript", "WF4", "TDD", "MSBuild", "PRISM", "EventMachine", "ReSharper", "AppFabric", "Blog", "CSOM", "MSIL", "Log", "ORMs", "Math", "MDX", "Riak", "CRM", "SEO", "GamesSalad", "RabbitMQ", "XML", "Core", "AppBuilder", "jQuery", "PerformancePoint", "OLTP", "iOS7", "MEAN", "PostSharp", "ISV", "C", "PHP", "Zend", "ENCOG"];
 
 function psTitlecase(inputString) {
   var inputArray = inputString.split(" ");
-  var techDictionary = ["JavaScript", "jQuery", "EF", "Linq"];
   var lowerCaseTechDictionary = techDictionary.map(function (txt){
     return txt.substr(0).toLowerCase();
   });
