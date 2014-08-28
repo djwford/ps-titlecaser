@@ -1,15 +1,10 @@
 $(document).ready(function(){
-
-
   $("#test").on('click', calculateOutput);
-
   $("#input_box").keyup(function(event){
       if(event.keyCode == 13){
           $("#test").click();
       }
   });
-
-
 
   $('#clear').on('click', function(){
     $('#output').html('');
@@ -19,6 +14,12 @@ $(document).ready(function(){
 
   function calculateOutput() {
     var inputString = $('#input_box').val();
+    if(inputString.charAt(0).search(/\"/) !== -1){
+      inputString = inputString.substr(1);
+    }
+    if(inputString.charAt(inputString.length - 1).search(/\"/) !== -1){
+      inputString = inputString.substr(0,inputString.length - 1);
+    }
     var outputString = psTitlecase(inputString);
     var outputStringArray = outputString.split(" ");
     var modArray = [];
@@ -29,7 +30,6 @@ $(document).ready(function(){
       }
     }
     $('#output').html(outputString);
-    console.log(modArray);
     for(i = 0; i < modArray.length; i++){
       $('#output').highlight(outputStringArray[modArray[i]], { caseSensitive: true });
     }
@@ -41,6 +41,7 @@ var techDictionary = ["HTML5", ".NET", "AngularJS", "CSS", "Grunt.js", "Ajax", "
 
 function psTitlecase(inputString) {
   var inputArray = inputString.split(" ");
+  // if inputArray[0].charAt(0).match(/"/){}
   var lowerCaseTechDictionary = techDictionary.map(function (txt){
     return txt.substr(0).toLowerCase();
   });
